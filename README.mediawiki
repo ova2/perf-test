@@ -1,8 +1,9 @@
 === Perfomance Test for JSF standard and PrimeFaces input / select components ===
 
-The goal is to measure the client-side perfomance of JS script block executions for PrimeFaces <tt>p:inputText</tt> / <tt>p:selectOneMenu</tt>.
+The goal is to measure the *client-side perfomance* of JS script block executions for PrimeFaces <tt>p:inputText</tt> / <tt>p:selectOneMenu</tt>.
 There is no backend logic. For perfomance test, an editable <tt>p:dataTable</tt> with inputs / selects components within the table cells is used.
-The table has 25 rows and 16 columns, that means 25 * 16 = 400 cells. Every cell contains either an input or a select component. There are 6 test cases.
+The table has 25 rows and 16 columns, that means 25 * 16 = 400 cells. Every cell contains either an input or a select component.
+There are 6 test cases, depending on component's combinations.
 
 * An input can be either an JSF standard <tt>h:inputText</tt> (without any JS script block) or PrimeFaces' <tt>p:inputText</tt> (with JS script block execution).
 * A select can be either a JSF standard <tt>h:selectOneMenu</tt> (without any JS script block) or PrimeFaces' <tt>p:selectOneMenu</tt> (with JS script block execution).
@@ -30,6 +31,8 @@ The following function is used to measure and output the time after the current 
     });
 </script>
 </pre>
+
+JavaScript is single-threaded, so let's see how sequential script block executions can slow down displaying a web page.
 
 ==== Compile and Run Project ====
 
