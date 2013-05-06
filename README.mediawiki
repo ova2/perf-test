@@ -1,6 +1,6 @@
 === Perfomance Test for JSF standard and PrimeFaces input / select components ===
 
-The goal is to measure the '''client-side perfomance''' of JS script block executions for PrimeFaces <tt>p:inputText</tt> / <tt>p:selectOneMenu</tt>.
+The goal is to measure the client-side perfomance of JS script block executions for PrimeFaces <tt>p:inputText</tt> / <tt>p:selectOneMenu</tt>.
 There is no backend logic. For perfomance test, an editable <tt>p:dataTable</tt> with inputs / selects components within the table cells is used.
 The table has 25 rows and 16 columns, that means 25 * 16 = 400 cells. Every cell contains either an input or a select component.
 There are 6 test cases, depending on component's combinations.
