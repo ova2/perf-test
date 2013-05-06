@@ -1,0 +1,68 @@
+== Perfomance Test for JSF standard and PrimeFaces input / select components ==
+
+The goal is to measure the client-side perfomance of JS script block executions for PrimeFaces p:inputText / p:selectOneMenu.
+There is no backend logic. For perfomance test, an editable p:dataTable with inputs / selects components within the table cells is used.
+The table has 25 rows and 16 columns, that means 25 * 16 = 400 cells. Every cell contains either an input or a select component.
+
+#* An input can be either an JSF standard h:inputText (withput any JS script block) or PrimeFaces' p:inputText (with an JS script block).
+#* A select can be either a JSF standard h:selectOneMenu (withput any JS script block) or PrimeFaces' p:selectOneMenu (with an JS script block).
+
+The page load speed is measured with the new [https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html Navigation Timing JavaScript API]
+for accurately measuring performance on the web. The API provides a simple way to get accurate and detailed timing statistics natively.
+It's available in Internet Explorer 9 and higher, last releases of Google Chrome and Firefox.
+
+The following function is used to measure the time after the current response has been arrived until the window onload event is fired (when everything were loaded and executed). 
+
+<pre>
+<script type="text/javascript">
+    $(window).load(function () {
+        setTimeout(function () {
+            window.performance = window.performance ||
+                                 window.mozPerformance ||
+                                 window.msPerformance ||
+                                 window.webkitPerformance || {};
+            var timing = performance.timing || {};
+
+            var loadTime = timing.loadEventEnd - timing.responseEnd;
+            console.log(loadTime);
+            $("#timeOutput").html("Load Time (ms) = " + loadTime);
+        }, 0);
+    });
+</script>
+</pre>
+
+=== Compile and Run Project ===
+
+Open your console / terminal window and clone the repository with
+
+<pre>
+git clone git://github.com/ova2/perf-test.git
+</pre>
+
+The demo web application is prepared to run with Jetty 8 server. To run it with JSF Mojarra implementation, type in the console / terminal window
+
+<pre>
+mvn jetty:run
+</pre>
+
+To run it with JSF MyFaces implementation, type
+
+<pre>
+mvn jetty:run -Pmyfaces
+</pre>
+
+This starts Jetty server and the demo app is available under the following URL in a web browser
+
+<pre>
+http://localhost:8080/perf-test/
+</pre>
+
+Jetty will continue to run until you stop it with a <tt>Ctrl+C</tt> in the console / terminal window where it is running.
+
+Alternative, you can compile the project
+
+<pre>
+mvn clean package
+</pre>
+
+and deploy the WAR file on every JEE 6 compliant server of your choice.
