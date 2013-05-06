@@ -1,17 +1,17 @@
-== Perfomance Test for JSF standard and PrimeFaces input / select components ==
+=== Perfomance Test for JSF standard and PrimeFaces input / select components ===
 
-The goal is to measure the client-side perfomance of JS script block executions for PrimeFaces p:inputText / p:selectOneMenu.
-There is no backend logic. For perfomance test, an editable p:dataTable with inputs / selects components within the table cells is used.
-The table has 25 rows and 16 columns, that means 25 * 16 = 400 cells. Every cell contains either an input or a select component.
+The goal is to measure the client-side perfomance of JS script block executions for PrimeFaces <tt>p:inputText</tt> / <tt>p:selectOneMenu</tt>.
+There is no backend logic. For perfomance test, an editable <tt>p:dataTable</tt> with inputs / selects components within the table cells is used.
+The table has 25 rows and 16 columns, that means 25 * 16 = 400 cells. Every cell contains either an input or a select component. There are 6 test cases.
 
-#* An input can be either an JSF standard h:inputText (withput any JS script block) or PrimeFaces' p:inputText (with an JS script block).
-#* A select can be either a JSF standard h:selectOneMenu (withput any JS script block) or PrimeFaces' p:selectOneMenu (with an JS script block).
+* An input can be either an JSF standard <tt>h:inputText</tt> (without any JS script block) or PrimeFaces' <tt>p:inputText</tt> (with JS script block execution).
+* A select can be either a JSF standard <tt>h:selectOneMenu</tt> (without any JS script block) or PrimeFaces' <tt>p:selectOneMenu</tt> (with JS script block execution).
 
 The page load speed is measured with the new [https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html Navigation Timing JavaScript API]
 for accurately measuring performance on the web. The API provides a simple way to get accurate and detailed timing statistics natively.
 It's available in Internet Explorer 9 and higher, last releases of Google Chrome and Firefox.
 
-The following function is used to measure the time after the current response has been arrived until the window onload event is fired (when everything were loaded and executed). 
+The following function is used to measure and output the time after the current response has been arrived until the window onload event is fired (everything were loaded and executed). 
 
 <pre>
 <script type="text/javascript">
@@ -31,7 +31,7 @@ The following function is used to measure the time after the current response ha
 </script>
 </pre>
 
-=== Compile and Run Project ===
+==== Compile and Run Project ====
 
 Open your console / terminal window and clone the repository with
 
@@ -57,9 +57,7 @@ This starts Jetty server and the demo app is available under the following URL i
 http://localhost:8080/perf-test/
 </pre>
 
-Jetty will continue to run until you stop it with a <tt>Ctrl+C</tt> in the console / terminal window where it is running.
-
-Alternative, you can compile the project
+Jetty will continue to run until you stop it with a <tt>Ctrl+C</tt> in the console / terminal window where it is running. Alternative, you can compile the project
 
 <pre>
 mvn clean package
